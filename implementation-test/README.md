@@ -1,66 +1,415 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+---
+title: waizly
+language_tabs:
+  - shell: Shell
+  - http: HTTP
+  - javascript: JavaScript
+  - ruby: Ruby
+  - python: Python
+  - php: PHP
+  - java: Java
+  - go: Go
+toc_footers: []
+includes: []
+search: true
+code_clipboard: true
+highlight_theme: darkula
+headingLevel: 2
+generator: "@tarslib/widdershins v4.0.23"
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# waizly
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Base URLs:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Authentication
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- HTTP Authentication, scheme: bearer
 
-## Learning Laravel
+# Auth
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## POST Register
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+POST /api/register
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> Body Parameters
 
-## Laravel Sponsors
+```json
+{
+  "name": "Syakil",
+  "email": "syakil@example.com",
+  "password": "12345678",
+  "password_confirmation": "12345678"
+}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Params
 
-### Premium Partners
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+|» name|body|string| yes |none|
+|» email|body|string| yes |none|
+|» password|body|string| yes |none|
+|» password_confirmation|body|string| yes |none|
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+> Response Examples
 
-## Contributing
+> Register
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```json
+{
+  "message": "User registered successfully"
+}
+```
 
-## Code of Conduct
+### Responses
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Register|Inline|
 
-## Security Vulnerabilities
+### Responses Data Schema
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+HTTP Status Code **200**
 
-## License
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» message|string|true|none||none|
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## POST Logout
+
+POST /api/logout
+
+> Body Parameters
+
+```json
+{}
+```
+
+### Params
+
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+
+> Response Examples
+
+> Logout
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Logout|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» message|string|true|none||none|
+
+## POST Login
+
+POST /api/login
+
+> Body Parameters
+
+```json
+{
+  "email": "john@example.com",
+  "password": "password"
+}
+```
+
+### Params
+
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+|» email|body|string| yes |none|
+|» password|body|string| yes |none|
+
+> Response Examples
+
+> Login
+
+```json
+{
+  "access_token": "4|5bBJbLcs4YhFr1El5oZEVJpz0EvbGlKI6gj9lwK3dfd37356",
+  "token_type": "Bearer"
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Login|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» access_token|string|true|none||none|
+|» token_type|string|true|none||none|
+
+# User
+
+## GET get user
+
+GET /api/user
+
+> Response Examples
+
+> get user
+
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "email_verified_at": null,
+  "created_at": "2024-05-16T17:20:26.000000Z",
+  "updated_at": "2024-05-16T17:20:26.000000Z"
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|get user|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» id|integer|true|none||none|
+|» name|string|true|none||none|
+|» email|string|true|none||none|
+|» email_verified_at|null|true|none||none|
+|» created_at|string|true|none||none|
+|» updated_at|string|true|none||none|
+
+# Product
+
+## GET Get Products
+
+GET /api/products
+
+> Response Examples
+
+> Get Products
+
+```json
+[
+  {
+    "id": 2,
+    "name": "New Product",
+    "description": "Description for new product",
+    "price": "150.00",
+    "stock": 20,
+    "created_at": "2024-05-16T18:38:22.000000Z",
+    "updated_at": "2024-05-16T18:38:22.000000Z"
+  }
+]
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Get Products|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» id|integer|false|none||none|
+|» name|string|false|none||none|
+|» description|string|false|none||none|
+|» price|string|false|none||none|
+|» stock|integer|false|none||none|
+|» created_at|string|false|none||none|
+|» updated_at|string|false|none||none|
+
+## POST Add Product
+
+POST /api/products
+
+> Body Parameters
+
+```json
+{
+  "name": "New Product 2",
+  "description": "Description for new product",
+  "price": 150,
+  "stock": 20
+}
+```
+
+### Params
+
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+|» name|body|string| yes |none|
+|» description|body|string| yes |none|
+|» price|body|integer| yes |none|
+|» stock|body|integer| yes |none|
+
+> Response Examples
+
+> Add Product
+
+```json
+{
+  "name": "New Product 2",
+  "description": "Description for new product",
+  "price": 150,
+  "stock": 20,
+  "updated_at": "2024-05-16T18:41:20.000000Z",
+  "created_at": "2024-05-16T18:41:20.000000Z",
+  "id": 3
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Add Product|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **201**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» name|string|true|none||none|
+|» description|string|true|none||none|
+|» price|integer|true|none||none|
+|» stock|integer|true|none||none|
+|» updated_at|string|true|none||none|
+|» created_at|string|true|none||none|
+|» id|integer|true|none||none|
+
+## PUT Update Product
+
+PUT /api/products/1
+
+> Body Parameters
+
+```json
+{
+  "name": "Updated Product",
+  "description": "Updated description for product",
+  "price": 200,
+  "stock": 30
+}
+```
+
+### Params
+
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+|» name|body|string| yes |none|
+|» description|body|string| yes |none|
+|» price|body|integer| yes |none|
+|» stock|body|integer| yes |none|
+
+> Response Examples
+
+> Update
+
+```json
+{
+  "id": 1,
+  "name": "Updated Product",
+  "description": "Updated description for product",
+  "price": 200,
+  "stock": 30,
+  "created_at": "2024-05-16T18:37:54.000000Z",
+  "updated_at": "2024-05-16T18:39:51.000000Z"
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Update|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» id|integer|true|none||none|
+|» name|string|true|none||none|
+|» description|string|true|none||none|
+|» price|integer|true|none||none|
+|» stock|integer|true|none||none|
+|» created_at|string|true|none||none|
+|» updated_at|string|true|none||none|
+
+## DELETE Delete Product
+
+DELETE /api/products/3
+
+> Body Parameters
+
+```json
+{}
+```
+
+### Params
+
+|Name|Location|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object| no |none|
+
+> Response Examples
+
+> Delete
+
+```json
+{
+  "success": "Succed to delete product"
+}
+```
+
+### Responses
+
+|HTTP Status Code |Meaning|Description|Data schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Delete|Inline|
+
+### Responses Data Schema
+
+HTTP Status Code **200**
+
+|Name|Type|Required|Restrictions|Title|description|
+|---|---|---|---|---|---|
+|» success|string|true|none||none|
+
+# Data Schema
+
