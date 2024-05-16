@@ -14,19 +14,19 @@ Repositori ini berisi kode dan hasil tes untuk posisi freelance backend di Waizl
 ## Cara Menjalankan
 
 1.  **Problem Solving:**
-    *   Pastikan Anda memiliki Go terinstal di sistem Anda.
+    *   Pastikan Go terinstal.
     *   Buka terminal dan arahkan ke direktori `problem-solving`.
     *   Jalankan setiap file `.go` menggunakan perintah `go run nama_file.go`.
 
 2.  **Implementation Backend (Laravel):**
-    *   Pastikan Anda memiliki PHP dan Composer terinstal di sistem Anda.
+    *   Pastikan PHP dan Composer terinstal.
     *   Buka terminal dan arahkan ke direktori `implementation-test`.
     *   Jalankan perintah `composer install` untuk menginstal dependensi Laravel.
     *   Jalankan perintah `php artisan key:generate` untuk membuat kunci aplikasi (app key) yang aman.
     *   **Konfigurasi Database:**
         *   Buka file `.env` di direktori `implementation-test`.
-        *   Sesuaikan pengaturan database (misalnya, `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) sesuai dengan konfigurasi database Anda.
-    *   Jalankan perintah `php artisan migrate` untuk menjalankan perintah migrasi ke database anda
+        *   Sesuaikan pengaturan database (misalnya, `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) sesuai dengan konfigurasi database.
+    *   Jalankan perintah `php artisan migrate` untuk menjalankan perintah migrasi ke database.
     *   Jalankan perintah `php artisan serve` untuk menjalankan server development Laravel.
     *   Backend akan berjalan pada alamat `http://localhost:8000`.
 
