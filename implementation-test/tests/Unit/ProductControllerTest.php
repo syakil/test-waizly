@@ -28,18 +28,15 @@ class ProductControllerTest extends TestCase
 
     public function testIndex()
     {
-        // Mock the 'all' method from the ProductService to return a collection of Product objects
         $this->productService
             ->shouldReceive('all')
             ->once();
 
-        // Perform a GET request to the '/api/products' endpoint
         $response = $this->get('/api/products');
 
-        // Check if the response status is 200 OK
         $response->assertStatus(200)
             ->assertJsonStructure([
-                '*' => [  // Use '*' to indicate that the structure should apply to all elements in the array
+                '*' => [
                     'id', 'name', 'description', 'price', 'stock', 'created_at', 'updated_at'
                 ]
             ]);
