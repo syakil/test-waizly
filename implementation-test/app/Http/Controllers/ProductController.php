@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,6 +22,8 @@ class ProductController extends Controller
             $products = $this->productService->all();
             return response()->json($products, Response::HTTP_OK);
         } catch (\Exception $e) {
+
+            Log::channel('slack')->critical($e->getMessage());
             return response()->json(['error' => 'Failed to retrieve products'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -31,6 +34,7 @@ class ProductController extends Controller
             $product = $this->productService->find($id);
             return response()->json($product, Response::HTTP_OK);
         } catch (\Exception $e) {
+            Log::channel('slack')->critical($e->getMessage());
             return response()->json(['error' => 'Product not found'], Response::HTTP_NOT_FOUND);
         }
     }
@@ -52,6 +56,7 @@ class ProductController extends Controller
             $product = $this->productService->create($request->all());
             return response()->json($product, Response::HTTP_CREATED);
         } catch (\Exception $e) {
+            Log::channel('slack')->critical($e->getMessage());
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -73,6 +78,7 @@ class ProductController extends Controller
             $product = $this->productService->update($id, $request->all());
             return response()->json($product, Response::HTTP_OK);
         } catch (\Exception $e) {
+            Log::channel('slack')->critical($e->getMessage());
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -83,6 +89,7 @@ class ProductController extends Controller
             $this->productService->delete($id);
             return response()->json(['success'=>'Succed to delete product'], Response::HTTP_OK);
         } catch (\Exception $e) {
+            Log::channel('slack')->critical($e->getMessage());
             return response()->json(['error' => 'Failed to delete product'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
